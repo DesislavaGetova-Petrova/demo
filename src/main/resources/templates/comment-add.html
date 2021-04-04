@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec='http://www.thymeleaf.org/extras/spring-security'>
+
+<th:block th:include="~{fragments/head}"></th:block>
+<body id="page-top">
+
+<th:block th:include="~{fragments/nav}"></th:block>
+<main class="p-5 align-content-center bg-blur my-register-div">
+    <section class="page-section bg-light" id="video-view">
+        <div   class="container">
+
+            <div  class="row rounded mb-5 mt-3">
+                <div class="container mt-5">
+                    <div class="d-flex justify-content-center row ">
+                        <div class="col-md-8">
+                            <h6>Коментарът написан от Вас ще е видим само от администраторите на сайта!  </h6>
+                            <p></p>
+                            <p>Ще се радваме, ако споделите вашите предложения и препоръки! Te ще ни помогнат да станем по-добри :) </p>
+                            <p></p>
+                            <p>Aко имате въпроси, или желаете да Ви помогнем в решаването на някоя задача, моля пишете на посочения от нас най-долу,вдясно email! </p>
+                            <div class="d-flex flex-column comment-section ">
+                                <div  class="bg-blur text-light p-2 rounded">
+
+                                    <form th:action="@{/video/comment}" method="POST" th:object="${commentServiceModel}">
+                                        <select name="videoEntity" id="videoEntity" class="custom-select">
+                                            <option value="" selected>Видео-решение</option>
+                                            <option th:each="e:${videoEntity}" th:text="${e}" th:value="${e}"  selected></option>
+                                        </select>
+
+
+
+                                        <div  class="d-flex flex-row align-items-start">
+                                            <textarea class="form-control" rows="5" id="textContent" name ="textContent"  ></textarea>
+                                        </div>
+                                        <div class="mt-2 text-right">
+                                            <button class="btn btn-primary btn-sm shadow-none" type="submit" >Изпратете коментара
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+<th:block th:include="~{fragments/fot}"></th:block>
+</body>
+</html>

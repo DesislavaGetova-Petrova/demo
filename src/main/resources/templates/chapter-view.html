@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<th:block th:include="~{fragments/head}"></th:block>
+<body>
+<main class="p-5 align-content-center bg-blur my-register-div">
+    <th:block th:include="~{fragments/nav}"></th:block>
+    <section class="page-section bg-light" id="unit-view">
+        <div class="container">
+            <div class="col-12">
+                <th:block th:include="~{fragments/nav}"></th:block>
+            </div>
+
+            <div class="row tm-mt-big justify-content-center">
+                <div class="col-xl-8 col-lg-10 col-md-12 col-sm-12">
+                    <!--                        <div class="col-12">-->
+                    <h2 class="tm-block-title d-inline-block">Моля изберете тема</h2>
+                    <p>Важно! Достъпни са само тези теми, към които има добавени видео решения.</p>
+
+                    <div th:each="c : ${chapterNameEntity}" th:object="${c}">
+                        <a th:href="@{/video/viewAll/{chapterName}(chapterName =*{chapterName})}"
+                           class="list-group-item list-group-item-action list-group-item-light"
+                           th:text="${c.chapterName}" th:value="${c.chapterName}">
+                        </a>
+                    </div>
+
+                    <div class="col-xl-4 col-lg-4 col-md-12 mx-auto mb-4">
+                        <img src="/img/sbornik.png" alt="Exercise picture" width="100%">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <th:block th:include="~{fragments/fot}"></th:block>
+
+    </section>
+</main>
+</body>
+</html>

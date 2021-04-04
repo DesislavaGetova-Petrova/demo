@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+
+<th:block th:include="~{fragments/head}"></th:block>
+
+<body >
+<th:block th:include="~{fragments/nav}"></th:block>
+
+<main class="p-5 align-content-center bg-blur my-register-div">
+    <section class="page-section bg-light" id="resource-add">
+        <div class="row tm-mt-big justify-content-center">
+            <div class="col-xl-8 col-lg-10 col-md-12 col-sm-12">
+                <div class="bg-white tm-block">
+                    <div class="row">
+                        <div class="col-12">
+                            <h2 class="tm-block-title d-inline-block">Добавете видео-урок</h2>
+                        </div>
+                    </div>
+                    <div class="row mt-4 tm-edit-product-row">
+                        <div class="col-xl-7 col-lg-7 col-md-12">
+                            <form th:action="@{/lesson/add}" method="POST" th:object="${lessonAddBindingModel}"
+                                  class="tm-edit-product-form" >
+                                <div class="input-group mb-3">
+                                    <label for="chapterName">Изберете тема</label>
+                                    <select name="chapterName" id="chapterName" class="custom-select">
+                                        <option th:each="e:${chapterNames}" th:text="${e}" th:value="${e}"  selected>Изберете тема</option>
+                                    </select>
+                                </div>
+                                <div class="input-group mb-3">
+                                    <label for="lessonName" class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-form-label">Наименование
+                                    </label>
+                                    <input th:field ="*{lessonName}" id="lessonName" name ="lessonName" type="text"
+                                           class="form-control validate col-xl-9 col-lg-8 col-md-8 col-sm-7" required minlength="5" maxlength="20"/>
+                                </div>
+                                <div class="input-group mb-3 justify-content-center">
+                                    <small th:if="${#fields.hasErrors('lessonName')}" th:errors="*{lessonName}" class="text-danger">наименованието трябва да е между 5 и 20 символа</small>
+
+                                </div>
+
+                                <div class="input-group mb-3">
+                                    <label for="lessonUrl" class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-form-label">УрокUrl
+                                    </label>
+                                    <input th:field ="*{lessonUrl}" id="lessonUrl" name="lessonUrl" type="text"
+                                           class="form-control validate col-xl-9 col-lg-8 col-md-8 col-sm-7"
+                                           data-large-mode="true"/>
+                                </div>
+                                <div class="input-group mb-3 justify-content-center">
+                                    <small th:if="${#fields.hasErrors('lessonUrl')}" th:errors="*{lessonUrl}" class="text-danger"></small>
+                                </div>
+                                <div>
+                                    <small th:if="${lessonExistsError}"
+                                           class="text-danger">Видео-урок с такова наименование вече съществува!</small>
+                                </div>
+                                <div class="input-group mb-3">
+                                    <div class="ml-auto col-xl-8 col-lg-8 col-md-8 col-sm-7 pl-0">
+                                        <button type="submit" class="btn btn-primary">Добави
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-xl-4 col-lg-4 col-md-12 mx-auto mb-4">
+                            <img src="/img/lesson.png" alt="Exercise picture" width="100%">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <th:block th:include="~{fragments/fot}"></th:block>
+</main>
+</div>
+
+
+</body>
+
+</html>

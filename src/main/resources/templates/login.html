@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<th:block th:include="~{fragments/head}"></th:block>
+
+  <body >
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+    <div class="container">
+      <a class="nav-link" href="/">
+        <img src="/img/logo.png" width="200px"  >
+      </a>
+      <div class="collapse navbar-collapse  d-flex justify-content-end">
+        <button class="navbar-toggler navbar-toggler-left" type="button" data-toggle="collapse"
+                data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+                aria-label="Toggle navigation">
+          <i class="fas fa-bars ml-1"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav text-uppercase ml-auto">
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger"
+                 th:href="@{/users/register}"> регистрирай се
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main class="p-5 align-content-center bg-blur my-register-div">
+        <section class="page-section" id="login">
+          <div class="container">
+            <div class="text-center">
+              <h1 class="text-center mt-2"><span class="badge badge-pill badge-dark">Login</span></h1>
+              <hr class="hr-3 w-25 bg-white"/>
+              <div th:if="${bad_credentials}" class="alert alert-danger text-light form-text bg-danger rounded" role="alert" >
+                Тази комбинация от username и password несъществува! Моля опитай отново или избери "РЕГИСТРИРАЙ СЕ"!
+              </div>
+
+              <form th:action="@{/users/login}"
+                    method="POST">
+
+                <h1 class="h3 mb-3 fw-normal">Mоля въведете </h1>
+
+                <label for="inputUsername" class="visually-hidden">Username</label>
+                <input type="text"   name="username" th:value="${username}"   required minlength="3" maxlength="20"   id="inputUsername" class="form-control" placeholder="Username" >
+                <label for="inputPassword" class="visually-hidden">Password</label>
+                <input type="password"   name="password" id="inputPassword"  required minlength="5" maxlength="20" class="form-control" placeholder="Password" >
+                <p>
+
+                </p>
+                <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+
+              </form>
+            </div>
+          </div>
+
+        </section>
+    <th:block th:include="~{fragments/fot}"></th:block>
+
+  </main>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+  </body>
+</html>

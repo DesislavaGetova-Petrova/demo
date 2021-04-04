@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec='http://www.thymeleaf.org/extras/spring-security'>
+
+<th:block th:include="~{fragments/head}"></th:block>
+<body id="page-top">
+
+<th:block th:include="~{fragments/nav}"></th:block>
+<main class="p-5 align-content-center bg-blur my-register-div">
+    <section class="page-section bg-light" id="video-view">
+        <div   class="container">
+            <div  th:object="${lesson}">
+                <div class="row">
+                    <h3 th:text="*{lessonName}"></h3>
+                    <div class="embed-responsive embed-responsive-16by9">
+                        <video width="320" height="240" controls controlsList="nodownload">
+                            <source th:src="*{lessonUrl}" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="container">
+                        <textarea name="text" class="form-control ml-1 shadow-none textarea" th:text="*{chapterName}"></textarea>
+                    </div>
+                    <div  sec:authorize="hasRole('ROLE_MODERATOR')" class="col-md-8">
+
+                        <h6 class="large text-muted">Желаете ли да изтриете урока?</h6>
+                        <p></p>
+
+                        <a class="btn btn-primary btn-sm shadow-none" th:href="@{/lesson/delete/{id}(id =*{id})}">Изтрий </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+<th:block th:include="~{fragments/fot}"></th:block>
+</body>
+</html>

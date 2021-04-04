@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"  xmlns:sec='http://www.thymeleaf.org/extras/spring-security'>
+<th:block th:include="~{fragments/head}"></th:block>
+<body id="page-top">
+
+<th:block th:include="~{fragments/nav}"></th:block>
+
+<main class="p-5 align-content-center bg-blur my-register-div">
+    <section class="page-section" id="allVideos">
+        <div class="container">
+        </div>
+    </section>
+    <form>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3">
+                    <h3 class="tm-block-title d-inline-block" th:object="${chapterName}" th:text="${chapterName}"></h3>
+                </div>
+
+                <div class="col-lg-9">
+                    <div class="row">
+                        <div class="col-lg-4 col-md-6 mb-4" th:each="v : ${videoEntity}" th:object="${v}">
+                            <div class="card h-100">
+                                <div class="embed-responsive embed-responsive-16by9">
+                                    <video width="320" height="240" controls controlsList="nodownload">
+                                        <source th:src="*{videoUrl}" type="video/mp4">
+                                    </video>
+                                </div>
+                                <div class="card-body">
+                                    <h4 class="card-title" >
+                                        <a th:href="@{/video/view/{id}(id =*{id})}" th:text="*{videoName}"></a>
+                                    </h4>
+                                    <h5>безплатно</h5>
+                                    <p class="card-text" th:text="*{description}">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
+                                </div>
+                                <div class="card-footer">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="btn-group">
+                                            <a th:href="@{/video/view/{id}(id =*{id})}"  type="button" class="btn btn-sm btn-outline-secondary">Детайли</a>
+                                        </div>
+                                        <div sec:authorize="hasRole('ROLE_ADMIN')" class="btn-group">
+                                            <a th:href="@{/video/delete/{id}(id =*{id})}"  type="button" class="btn btn-sm btn-outline-secondary">Изтрий</a>
+                                        </div>
+
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>                `
+            </div>
+        </div>
+    </form>
+
+
+ </section>
+</main>
+
+
+<th:block th:include="~{fragments/fot}"></th:block>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+<script src="js/scripts.js"></script>
+</body>
+</html>

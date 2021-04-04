@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec='http://www.thymeleaf.org/extras/spring-security'>
+<th:block th:include="~{fragments/head}"></th:block>
+<th:block>
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+        <div class="container">
+            <a class="nav-link" href="/">
+                <img src="/img/logo.png" width="200px"  >
+            </a>
+            <div class="collapse navbar-collapse  d-flex justify-content-end">
+
+            <div sec:authorize="hasRole('ROLE_MODERATOR')" class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  АДМИНИСТРИРАНЕ РЕСУРСИ
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="/unit/add">Въведи нов раздел</a>
+                    <a class="dropdown-item" href="/chapter/add">Въведи нова тема </a>
+                    <a class="dropdown-item" href="/video/addLimited">Въведи ново видео-решение до 10МВ</a>
+                    <a class="dropdown-item" href="/video/add">Въведи ново видео-решение > 10МВ</a>
+                    <a class="dropdown-item" href="/video/viewAll">Изтрий видео-решение </a>
+                    <a class="dropdown-item" href="/lesson/add">Въведи нов видео-урок </a>
+                    <a class="dropdown-item" href="/lesson/viewAll">Изтрий видео-урок </a>
+                </div>
+            </div>
+                <div sec:authorize="hasRole('ROLE_ADMIN')" class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        АДМИНИСТРИРАНЕ
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
+                        <a class="dropdown-item" href="/statistics">Статистика</a>
+                        <a class="dropdown-item" href="/comments">Коментари</a>
+                        <a class="dropdown-item" href="/roles/add">Въведи нова роля</a>
+                        <a class="dropdown-item" href="/roles/delete">Изтрий роля</a>
+                    </div>
+                </div>
+            <button class="navbar-toggler navbar-toggler-left" type="button" data-toggle="collapse"
+                    data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                Menu
+                <i class="fas fa-bars ml-1"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav text-uppercase ml-auto">
+
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/offer">какво предлагаме</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" sec:authorize="isAuthenticated()" th:href="@{/video/viewAll}"> решения</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" sec:authorize="isAuthenticated()" th:href="@{/lesson/viewAll}"> кратки уроци</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" sec:authorize="!isAuthenticated()" th:href="@{/users/login}"> влез в профила </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" sec:authorize="!isAuthenticated()"
+                                            th:href="@{/users/register}"> регистрирай се
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger"  sec:authorize="isAuthenticated()">
+                            <form th:action="@{/logout}" method="POST">
+                        <button type="submit" class="btn btn-primary" >
+                            Излез
+                        </button>
+                            </form>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+       </div>
+    </nav>
+</th:block>

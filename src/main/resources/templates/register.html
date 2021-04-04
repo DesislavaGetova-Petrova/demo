@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<th:block th:include="~{fragments/head}"></th:block>
+<body>
+<th:block th:include="~{fragments/nav}"></th:block>
+
+<main class="p-5 align-content-center bg-blur my-register-div">
+    <section class="page-section" id="register">
+        <div class="container">
+            <div class="text-center">
+                <h1 class="text-center mt-2"><span class="badge badge-pill badge-dark">Register</span></h1>
+                <hr class="hr-3 w-25 bg-white"/>
+                <form class="mx-auto w-25 bg-blur"  th:action="@{/users/register}" th:object="${registrationBindingModel}" th:method="POST">
+                    <div class="form-group">
+                        <div class="label-holder textCol d-flex justify-content-center">
+                            <h1 class="h3 mb-3 fw-normal">Mоля въведете </h1>
+                        </div>
+                        <label for="inputUsername" class="visually-hidden">Username</label>
+                        <input name="username"
+                               th:value="*{username}"
+                               th:errorclass="is-invalid"
+                               type="text"
+                               id="inputUsername"
+                               required minlength="3" maxlength="20"
+                               class="form-control"
+                               aria-describedby="usernameHelpInline">
+                        <small id="usernameError"
+                               class="invalid-feedback text-light form-text bg-danger rounded">Username трябва да съдържа между 3 и 20 символа!</small>
+
+                        <small th:if="${userExistsError}" id="usernameUniqueError"
+                               class="text-light form-text bg-danger rounded">Този username вече е зает! </small>
+                    </div>
+                    <div class="form-group">
+                        <div class="label-holder textCol d-flex justify-content-center">
+                            <label for="inputEmail" class="visually-hidden">Email</label>
+                        </div>
+                        <input name="email"
+                               th:value="*{email}"
+                               th:errorclass="is-invalid"
+                               type="email"
+                               id="inputEmail"
+                               class="form-control"
+                               aria-describedby="emailHelpInline">
+                        <small id="emailError"
+                               class="invalid-feedback text-light form-text bg-danger rounded">Моля посочете валиден email!</small>
+                    </div>
+                    <div class="form-group">
+                        <div class="label-holder  textCol d-flex justify-content-center">
+                            <label for="inputPassword" class="visually-hidden">Password</label>
+                        </div>
+                        <input name="password"
+                               th:errorclass="is-invalid"
+                               type="password"
+                               required minlength="5" maxlength="20"
+                               id="inputPassword"
+                               class="form-control"
+                               aria-describedby="passwordHelpInline">
+                        <small id="passwordError"
+                               class="invalid-feedback text-light form-text bg-danger rounded">
+                            Password трябва да съдържа между 5 и 20 символа!
+                        </small>
+                    </div>
+                    <div class="form-group">
+                        <div class="label-holder  textCol d-flex justify-content-center">
+                            <label for="inputConfirmPassword" class="visually-hidden">Confirm password</label>
+                        </div>
+                        <input name="confirmPassword"
+                               th:errorclass="is-invalid"
+                               type="password"
+                               id="inputConfirmPassword"
+                               required minlength="5" maxlength="20"
+                               class="form-control"
+                               aria-describedby="confirmPasswordHelpInline">
+                        <small id="confirmPasswordError"
+                               class="invalid-feedback text-light form-text bg-danger rounded">
+                            Confirm password трябва да съдържа между 5 и 20 символа и да съвпада с Password!
+                        </small>
+                    </div>
+
+                    <div class="button-holder d-flex justify-content-center">
+                        <button type="submit" class="btn btn-primary" >Register</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+    <th:block th:include="~{fragments/fot}"></th:block>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="assets/mail/jqBootstrapValidation.js"></script>
+    <script src="assets/mail/contact_me.js"></script>
+
+</main>
+</body>
+</html>

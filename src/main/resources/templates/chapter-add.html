@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+
+<th:block th:include="~{fragments/head}"></th:block>
+
+<body >
+<th:block th:include="~{fragments/nav}"></th:block>
+
+<main class="p-5 align-content-center bg-blur my-register-div">
+    <section class="page-section bg-light" id="chapter-add">
+        <div class="row tm-mt-big justify-content-center">
+            <div class="col-xl-8 col-lg-10 col-md-12 col-sm-12">
+                <div class="bg-white tm-block">
+                    <div class="row">
+                        <div class="col-12">
+                            <h2 class="tm-block-title d-inline-block">Добавете нова тема</h2>
+                        </div>
+                    </div>
+                    <div class="row mt-4 tm-edit-product-row">
+                        <div class="col-xl-7 col-lg-7 col-md-12">
+                            <form  th:action="@{/chapter/add}" method="POST" th:object="${chapterNameAddBindingModel}" class="tm-edit-product-form" >
+                                <div class="input-group mb-3">
+                                    <label for="unitName"></label>
+                                    <select name="unitName" id="unitName" class="custom-select">
+                                        <option value="" selected>Изберете раздел</option>
+                                           <option th:each="e:${unitNames}" th:text="${e}" th:value="${e}"  selected>Изберете раздел</option>
+                                    </select>
+                                </div>
+                                <div class="input-group mb-3">
+                                    <label for="chapterName" class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-form-label">Наименование
+                                    </label>
+                                    <input th:field ="*{chapterName}" id="chapterName" name ="chapterName" type="text"
+                                            class="form-control validate col-xl-9 col-lg-8 col-md-8 col-sm-7" required minlength="3" maxlength="200"/>
+
+                                    <div>
+                                        <small th:if="${#fields.hasErrors('chapterName')}" th:errors="*{chapterName}" id="chapterNameError"
+                                               class="text-danger">Наименованието трябва да съдържа повече от три символа!</small>
+                                    </div>
+                                </div>
+                                <div>
+                                    <small th:if="${chapterExistsError}"
+                                           class="text-danger">Тема с такова име вече съществува!</small>
+                                </div>
+
+                                <div class="input-group mb-3">
+                                    <div class="ml-auto col-xl-8 col-lg-8 col-md-8 col-sm-7 pl-0">
+                                        <button type="submit" class="btn btn-primary">Добави
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-xl-4 col-lg-4 col-md-12 mx-auto mb-4">
+                            <img src="/img/sbornik.png" alt="Exercise picture" width="100%">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+</div>
+
+
+</body>
+
+</html>
