@@ -164,8 +164,6 @@
                   <configuration>
                     <archive>
                         <manifest>
-                            <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
-                            <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
                             <addClasspath>true</addClasspath>
                             <mainClass>desico.project.ProjectApplication</mainClass>
                         </manifest>
