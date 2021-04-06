@@ -18,7 +18,7 @@ public class ProjectApplicationInit implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         userService.seedUsers();
-        unitNameService.seedUnitNames();
+//        unitNameService.seedUnitNames();
 
     }
 }
