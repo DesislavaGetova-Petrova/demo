@@ -51,7 +51,7 @@ public class UserServiceImpl implements UserService {
 
             userRoleRepository.saveAll(List.of(adminRole, moderatorRole, userRole));
 
-            UserEntity admin = new UserEntity().setUsername("admin").setEmail("desy@abv.bg").setPassword(passwordEncoder.encode("123456"));
+            UserEntity admin = new UserEntity().setUsername("admin").setEmail("desy@abv.bg").setPassword(passwordEncoder.encode("123654"));
             UserEntity moderator = new UserEntity().setUsername("moderator").setEmail("ddd@ddd").setPassword(passwordEncoder.encode("123456"));
             UserEntity user = new UserEntity().setUsername("user").setEmail("pepi@abv.bg").setPassword(passwordEncoder.encode("123456"));
             admin.setRoles(List.of(adminRole, moderatorRole, userRole));
