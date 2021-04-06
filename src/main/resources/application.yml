@@ -41,9 +41,9 @@ logging:
     level:
          root: info
 
-#cloudinary:
-#    api-key: 512268179821855
-#    api-secret: ${CLOUDINARY_SECRET}
-#    cloud-name: doma6noto
+cloudinary:
+    api-key: 512268179821855
+    api-secret: ${CLOUDINARY_SECRET}
+    cloud-name: doma6noto
 log:
     delete-cron: '* */15 * * * *'
