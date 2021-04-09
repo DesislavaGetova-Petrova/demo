@@ -5,7 +5,7 @@ const allLessons = [];
 
 
 
-fetch("http://localhost:8000/lesson/viewAll/api").
+fetch("https://localhost:8000/lesson/viewAll/api").
 then(response => response.json()).
 then(data => {
     for (let lesson of data) {

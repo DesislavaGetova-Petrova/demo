@@ -5,7 +5,7 @@ const allVideos = [];
 
 
 
-fetch("http://localhost:8000/video/viewAll/api").
+fetch("https://localhost:8000/video/viewAll/api").
 then(response => response.json()).
 then(data => {
     for (let video of data) {
