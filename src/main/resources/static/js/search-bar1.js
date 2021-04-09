@@ -5,7 +5,7 @@ const allVideos = [];
 
 
 
-fetch("https://localhost:8000/video/viewAll/api").
+fetch("https://doma6noto.herokuapp.com/video/viewAll").
 then(response => response.json()).
 then(data => {
     for (let video of data) {

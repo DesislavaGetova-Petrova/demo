@@ -5,7 +5,7 @@ const allLessons = [];
 
 
 
-fetch("https://localhost:8000/lesson/viewAll/api").
+fetch("https://doma6noto.herokuapp.com/lesson/viewAll").
 then(response => response.json()).
 then(data => {
     for (let lesson of data) {
